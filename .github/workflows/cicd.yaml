@@ -7,11 +7,9 @@ on:
 
 jobs:
   build-and-push:
-
     runs-on: ubuntu-latest
 
     steps:
-
       - name: Checkout code
         uses: actions/checkout@v4
 
@@ -31,13 +29,13 @@ jobs:
       - name: Login to Docker Hub
         uses: docker/login-action@v3
         with:
-          username: ${{ secrets.pratik78124 }}
-          password: ${{ secrets.dckr_pat_qw6mmVX2wPP9q6dgjteh_wGa03g }}
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build Docker image
         run: |
-          docker build -t ${{ secrets.pratik78124 }}/flask-k8s-app:latest .
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/flask-k8s-app:latest .
 
       - name: Push Docker image
         run: |
-          docker push ${{ secrets.pratik78124 }}/flask-k8s-app:latest
+          docker push ${{ secrets.DOCKER_USERNAME }}/flask-k8s-app:latest
