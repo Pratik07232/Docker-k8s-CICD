@@ -1,4 +1,4 @@
-name: DevOps Task Manager CI/CD
+name: DevOps Task Manager CI/CD K8s GitHub Action
 
 on:
   push:
