@@ -1,0 +1,287 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #f4f7fb;
+    color: #222;
+    min-height: 100vh;
+}
+
+/* Header */
+
+header {
+    background: #1f2937;
+    color: white;
+    padding: 30px 20px;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 32px;
+    margin-bottom: 8px;
+}
+
+header p {
+    color: #d1d5db;
+    font-size: 16px;
+}
+
+/* Project Banner */
+
+.project-banner {
+    background: white;
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 25px;
+
+    border-radius: 15px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    gap: 20px;
+
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.devops-icon {
+    font-size: 65px;
+}
+
+.banner-text {
+    text-align: center;
+    flex: 1;
+}
+
+.banner-text h2 {
+    color: #2563eb;
+    font-size: 25px;
+    margin-bottom: 10px;
+}
+
+.banner-text p {
+    color: #6b7280;
+    line-height: 1.6;
+}
+
+/* Main Container */
+
+.container {
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 20px;
+}
+
+/* Task Card */
+
+.card {
+    background: white;
+    padding: 25px;
+
+    border-radius: 12px;
+
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* Input */
+
+.input-section {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+input {
+    flex: 1;
+
+    padding: 13px;
+
+    border: 1px solid #d1d5db;
+
+    border-radius: 8px;
+
+    font-size: 16px;
+
+    outline: none;
+}
+
+input:focus {
+    border-color: #2563eb;
+}
+
+/* Buttons */
+
+button {
+    border: none;
+
+    padding: 13px 20px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    font-size: 15px;
+}
+
+.add-btn {
+    background: #2563eb;
+    color: white;
+}
+
+.add-btn:hover {
+    background: #1d4ed8;
+}
+
+/* Tasks */
+
+.task {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding: 15px;
+
+    margin-bottom: 10px;
+
+    background: #f9fafb;
+
+    border-radius: 8px;
+
+    border-left: 4px solid #2563eb;
+}
+
+.task.completed {
+    border-left-color: #16a34a;
+    opacity: 0.7;
+}
+
+.task.completed span {
+    text-decoration: line-through;
+}
+
+/* Task Buttons */
+
+.actions {
+    display: flex;
+    gap: 8px;
+}
+
+.complete-btn {
+    background: #16a34a;
+    color: white;
+}
+
+.complete-btn:hover {
+    background: #15803d;
+}
+
+.delete-btn {
+    background: #dc2626;
+    color: white;
+}
+
+.delete-btn:hover {
+    background: #b91c1c;
+}
+
+/* Empty Task */
+
+.empty {
+    text-align: center;
+
+    color: #6b7280;
+
+    padding: 25px;
+}
+
+/* Technologies */
+
+.tech {
+    margin-top: 30px;
+
+    text-align: center;
+
+    color: #374151;
+}
+
+.tech strong {
+    font-size: 18px;
+}
+
+.tech div {
+    margin-top: 12px;
+}
+
+.tech span {
+    display: inline-block;
+
+    background: #e5e7eb;
+
+    padding: 8px 13px;
+
+    margin: 4px;
+
+    border-radius: 20px;
+
+    font-size: 13px;
+}
+
+/* Footer */
+
+footer {
+    text-align: center;
+
+    margin-top: 20px;
+
+    padding: 20px;
+
+    color: #6b7280;
+
+    font-size: 14px;
+}
+
+/* Mobile */
+
+@media (max-width: 600px) {
+
+    .project-banner {
+        margin: 20px;
+        flex-direction: column;
+    }
+
+    .container {
+        margin: 10px;
+        padding: 10px;
+    }
+
+    .input-section {
+        flex-direction: column;
+    }
+
+    .task {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 12px;
+    }
+
+    .actions {
+        width: 100%;
+    }
+
+    .actions button {
+        flex: 1;
+    }
+
+    header h1 {
+        font-size: 25px;
+    }
+}

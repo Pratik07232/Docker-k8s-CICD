@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>DevOps Task Manager</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f4f7fb;
+            color: #222;
+        }
+
+        header {
+            background: #1f2937;
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 30px;
+            margin-bottom: 8px;
+        }
+
+        header p {
+            color: #d1d5db;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        .input-section {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        input {
+            flex: 1;
+            padding: 13px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        button {
+            border: none;
+            padding: 13px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        .add-btn {
+            background: #2563eb;
+            color: white;
+        }
+
+        .add-btn:hover {
+            background: #1d4ed8;
+        }
+
+        .task {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            margin-bottom: 10px;
+            background: #f9fafb;
+            border-radius: 8px;
+            border-left: 4px solid #2563eb;
+        }
+
+        .task.completed {
+            border-left-color: #16a34a;
+            opacity: 0.7;
+        }
+
+        .task.completed span {
+            text-decoration: line-through;
+        }
+
+        .actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .complete-btn {
+            background: #16a34a;
+            color: white;
+        }
+
+        .delete-btn {
+            background: #dc2626;
+            color: white;
+        }
+
+        .empty {
+            text-align: center;
+            color: #6b7280;
+            padding: 20px;
+        }
+
+        .tech {
+            margin-top: 25px;
+            text-align: center;
+        }
+
+        .tech span {
+            display: inline-block;
+            background: #e5e7eb;
+            padding: 7px 12px;
+            margin: 4px;
+            border-radius: 20px;
+            font-size: 13px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #6b7280;
+            font-size: 14px;
+        }
+
+        @media (max-width: 600px) {
+            .input-section {
+                flex-direction: column;
+            }
+
+            .task {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>🚀 DevOps Task Manager</h1>
+    <p>Docker + Kubernetes + GitHub Actions</p>
+</header>
+
+<div class="container">
+
+    <div class="card">
+
+        <div class="input-section">
+            <input
+                type="text"
+                id="taskInput"
+                placeholder="Enter your task..."
+            >
+
+            <button class="add-btn" onclick="addTask()">
+                Add Task
+            </button>
+        </div>
+
+        <div id="taskList">
+            <div class="empty">
+                No tasks yet. Add your first task! 🎯
+            </div>
+        </div>
+
+    </div>
+
+    <div class="tech">
+        <strong>Technologies Used</strong>
+        <br>
+
+        <span>🐍 Flask</span>
+        <span>🐳 Docker</span>
+        <span>☸️ Kubernetes</span>
+        <span>🔄 GitHub Actions</span>
+        <span>🐙 GitHub</span>
+    </div>
+
+    <footer>
+        Mini DevOps Project | CI/CD Pipeline
+    </footer>
+
+</div>
+
+<script>
+
+    let tasks = [];
+
+    function addTask() {
+
+        const input = document.getElementById("taskInput");
+        const taskText = input.value.trim();
+
+        if (taskText === "") {
+            alert("Please enter a task!");
+            return;
+        }
+
+        tasks.push({
+            text: taskText,
+            completed: false
+        });
+
+        input.value = "";
+
+        displayTasks();
+    }
+
+    function completeTask(index) {
+
+        tasks[index].completed = !tasks[index].completed;
+
+        displayTasks();
+    }
+
+    function deleteTask(index) {
+
+        tasks.splice(index, 1);
+
+        displayTasks();
+    }
+
+    function displayTasks() {
+
+        const taskList = document.getElementById("taskList");
+
+        if (tasks.length === 0) {
+
+            taskList.innerHTML = `
+                <div class="empty">
+                    No tasks yet. Add your first task! 🎯
+                </div>
+            `;
+
+            return;
+        }
+
+        taskList.innerHTML = "";
+
+        tasks.forEach((task, index) => {
+
+            const taskElement = document.createElement("div");
+
+            taskElement.className =
+                "task " + (task.completed ? "completed" : "");
+
+            taskElement.innerHTML = `
+
+                <span>${task.text}</span>
+
+                <div class="actions">
+
+                    <button
+                        class="complete-btn"
+                        onclick="completeTask(${index})">
+                        ${task.completed ? "Undo" : "Done"}
+                    </button>
+
+                    <button
+                        class="delete-btn"
+                        onclick="deleteTask(${index})">
+                        Delete
+                    </button>
+
+                </div>
+            `;
+
+            taskList.appendChild(taskElement);
+
+        });
+    }
+
+</script>
+
+</body>
+</html>
